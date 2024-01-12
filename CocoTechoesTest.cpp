@@ -33,6 +33,18 @@ vector<vector<VisitEntry>> generateWebTrafficData(int numCities, int numEntriesP
     return webTrafficData;
 }
 
+// Print web traffic data
+void printWebTrafficData(const vector<vector<VisitEntry>>& webTrafficData) {
+    for (int i = 0; i < webTrafficData.size(); ++i) {
+        cout << "City: " << cities[i] << endl;
+        for (const auto& entry : webTrafficData[i]) {
+            cout << "User ID: " << entry.userId << ", Time of Day: " << entry.timeOfDay
+                 << ", Time Spent (minutes): " << entry.timeSpentMinutes << endl;
+        }
+        cout << "------------------------" << endl;
+    }
+}
+
 //time of day with the most number of unique users
 pair<string, int> findPeakTime(const vector<vector<VisitEntry>>& webTrafficData) {
     unordered_map<string, unordered_set<int>> timeOfDayUsers;
@@ -73,6 +85,7 @@ pair<string, string> findCityWithMaxUsage(const vector<vector<VisitEntry>>& webT
 
 int main() {
     auto webTrafficData = generateWebTrafficData(5, 100);
+    printWebTrafficData(webTrafficData);
     
     // time of day with the most number of unique users
     auto peakTime = findPeakTime(webTrafficData);
